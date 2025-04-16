@@ -1,4 +1,5 @@
 import { GrokLogo } from "@/components/ui/grok-logo";
+import ChatGrok from "@/components/ChatGrok";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -39,26 +40,8 @@ export default function Home() {
           <p className="text-xl text-gray-400 font-normal">How can I help you today?</p>
         </div>
 
-        {/* Input Area */}
-        <div className="w-full max-w-2xl">
-          <div className="relative w-full mb-4">
-            <Input
-              className="grok-input pr-20 py-6 pl-4 rounded-xl text-white"
-              placeholder="What do you want to know?"
-            />
-            <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex gap-2">
-              <button className="text-teal-500 hover:text-teal-400">
-                <div className="w-6 h-6 flex items-center justify-center">
-                  😊
-                </div>
-              </button>
-              <button className="text-teal-500 hover:text-teal-400">
-                <div className="w-6 h-6 flex items-center justify-center">
-                  💬
-                </div>
-              </button>
-            </div>
-          </div>
+        {/* Chat Area */}
+        <ChatGrok />
 
           {/* Action Buttons */}
           <div className="flex gap-2 items-center">
