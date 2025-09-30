@@ -14,20 +14,33 @@ export default function ChatGrok() {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [model, setModel] = useState<string>(process.env.NEXT_PUBLIC_DEFAULT_MODEL || "gpt-4.1");
+  const [models, setModels] = useState<string[]>([]);
   const bottomRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Fetch models from API
+    fetch("/api/models")
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.data) {
+          setModels(data.data.map((m: any) => m.id));
+        }
+      })
+      .catch(() => setModels(["gpt-4.1", "gemini-pro"]));
+  }, []);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim()) return;
-    const newMessages = [...messages, { role: "user", content: input }];
-    setMessages(newMessages);
-    setInput("");
-    setIsLoading(true);
-    let aiContent = "";
+  e.preventDefault();
+  if (!input.trim()) return;
+  const newMessages: Message[] = [...messages, { role: "user", content: input }];
+  setMessages(newMessages);
+  setInput("");
+  setIsLoading(true);
+  let aiContent = "";
     try {
       const res = await fetch("/api/chat", {
         method: "POST",
@@ -87,8 +100,13 @@ export default function ChatGrok() {
           value={model}
           onChange={e => setModel(e.target.value)}
         >
-          <option value="gpt-4.1">GPT-4.1</option>
-          <option value="gemini-pro">Gemini Pro</option>
+          {models.length > 0 ? (
+            models.map(m => (
+              <option key={m} value={m}>{m}</option>
+            ))
+          ) : (
+            <option value={model}>{model}</option>
+          )}
         </select>
         <Input
           className="flex-1 pr-20 py-3 pl-4 rounded-xl text-white border border-[#444] bg-[#23272F]"

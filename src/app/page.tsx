@@ -31,6 +31,7 @@ export default function Home() {
         </div>
       </header>
 
+
       {/* Main Content */}
       <div className="flex flex-col items-center justify-center flex-grow w-full max-w-3xl px-4 pb-8 mt-24">
         <div className="text-center mb-10">
@@ -43,50 +44,49 @@ export default function Home() {
         {/* Chat Area */}
         <ChatGrok />
 
-          {/* Action Buttons */}
-          <div className="flex gap-2 items-center">
-            <button className="grok-icon-button">
-              <Paperclip className="w-4 h-4" />
-            </button>
+        {/* Action Buttons */}
+        <div className="flex gap-2 items-center">
+          <button className="grok-icon-button">
+            <Paperclip className="w-4 h-4" />
+          </button>
 
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button className="grok-action-button">
+                <Search className="w-4 h-4" />
+                DeepSearch
+                <ChevronDown className="w-3.5 h-3.5 opacity-70" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="bg-zinc-800 border-zinc-700">
+              <DropdownMenuItem className="hover:bg-zinc-700">Option 1</DropdownMenuItem>
+              <DropdownMenuItem className="hover:bg-zinc-700">Option 2</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <button className="grok-action-button">
+            <Lightbulb className="w-4 h-4" />
+            Think
+          </button>
+
+          <div className="ml-auto flex gap-2 items-center">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="grok-action-button">
-                  <Search className="w-4 h-4" />
-                  DeepSearch
+                  Grok 3
                   <ChevronDown className="w-3.5 h-3.5 opacity-70" />
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-zinc-800 border-zinc-700">
-                <DropdownMenuItem className="hover:bg-zinc-700">Option 1</DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-zinc-700">Option 2</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-zinc-700">Grok 1</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-zinc-700">Grok 2</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-zinc-700">Grok 3</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <button className="grok-action-button">
-              <Lightbulb className="w-4 h-4" />
-              Think
+            <button className="grok-icon-button">
+              <ArrowUp className="w-4 h-4" />
             </button>
-
-            <div className="ml-auto flex gap-2 items-center">
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button className="grok-action-button">
-                    Grok 3
-                    <ChevronDown className="w-3.5 h-3.5 opacity-70" />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-zinc-800 border-zinc-700">
-                  <DropdownMenuItem className="hover:bg-zinc-700">Grok 1</DropdownMenuItem>
-                  <DropdownMenuItem className="hover:bg-zinc-700">Grok 2</DropdownMenuItem>
-                  <DropdownMenuItem className="hover:bg-zinc-700">Grok 3</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-
-              <button className="grok-icon-button">
-                <ArrowUp className="w-4 h-4" />
-              </button>
-            </div>
           </div>
         </div>
       </div>
